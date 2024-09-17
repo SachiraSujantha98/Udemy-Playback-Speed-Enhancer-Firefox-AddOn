@@ -44,12 +44,24 @@
           const buttons = speedMenu.querySelectorAll("button");
           buttons.forEach((btn) => btn.setAttribute("aria-checked", "false"));
           button.setAttribute("aria-checked", "true");
+
+          // Update the displayed speed in the control bar
+          updateDisplayedSpeed(speed);
         });
 
         li.appendChild(button);
         speedMenu.appendChild(li);
       }
     });
+  }
+
+  function updateDisplayedSpeed(speed) {
+    const speedDisplay = document.querySelector(
+      ".ud-focus-visible-target.playback-rate--trigger-text--l7hqr"
+    );
+    if (speedDisplay) {
+      speedDisplay.textContent = speed + "x";
+    }
   }
 
   // Observe mutations to detect when the playback rate menu is added
