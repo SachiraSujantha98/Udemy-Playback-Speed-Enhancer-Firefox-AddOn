@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Udemy Speed Enhancer",
+  "version": "1.0",
+  "author": "Sachira Sujantha",
+  "description": "Adds 2.5x and 3x playback speeds to Udemy videos.",
+  "icons": {
+    "48": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.udemy.com/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["activeTab"]
+}
