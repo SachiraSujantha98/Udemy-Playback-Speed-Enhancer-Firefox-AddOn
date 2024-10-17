@@ -9,7 +9,7 @@
     const existingSpeeds = Array.from(speedMenu.querySelectorAll("button")).map(
       (button) => parseFloat(button.textContent)
     );
-    const newSpeeds = [2.5, 3.0];
+    const newSpeeds = [2.5, 3.0, 3.5, 4.0];
 
     newSpeeds.forEach((speed) => {
       if (!existingSpeeds.includes(speed)) {
@@ -64,16 +64,28 @@
     }
   }
 
-  // Observe mutations to detect when the playback rate menu is added
-  const observer = new MutationObserver((mutations, obs) => {
-    const speedMenu = document.querySelector(
-      ".ud-unstyled-list.ud-block-list.playback-rate--menu--4b1Qm"
-    );
-    if (speedMenu) {
-      addCustomSpeedsToMenu();
-      obs.disconnect();
+  function handleVideoChange() {
+    // Observe changes to the playback rate menu
+    const observer = new MutationObserver((mutations, obs) => {
+      const speedMenu = document.querySelector(
+        ".ud-unstyled-list.ud-block-list.playback-rate--menu--4b1Qm"
+      );
+      if (speedMenu) {
+        addCustomSpeedsToMenu();
+        obs.disconnect(); // Stop observing once we’ve modified the menu
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Observe for video element changes
+  const videoObserver = new MutationObserver(() => {
+    const video = document.querySelector("video");
+    if (video) {
+      handleVideoChange(); // Call function when video changes
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  videoObserver.observe(document.body, { childList: true, subtree: true });
 })();
