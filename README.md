@@ -1,6 +1,6 @@
 # Udemy-Playback-Speed-Enhancer-Firefox-AddOn
 
-Firefox add-on that adds 2.5x and 3x playback speeds to Udemy videos.
+[Firefox add-on](https://addons.mozilla.org/en-US/firefox/addon/udemy-speed-enhancer/) that adds 2.5x and 3x playback speeds to Udemy videos.
 
 # Installation:
 
